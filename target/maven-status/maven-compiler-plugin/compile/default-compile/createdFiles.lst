@@ -1,0 +1,6 @@
+com\sesi\animanga\controller\UserController.class
+com\sesi\animanga\service\impl\UserServiceImpl.class
+com\sesi\animanga\AnimangaQuizzApplication.class
+com\sesi\animanga\service\UserService.class
+com\sesi\animanga\data\dao\UserDao.class
+com\sesi\animanga\data\entity\User.class
