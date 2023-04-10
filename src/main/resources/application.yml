@@ -1,0 +1,44 @@
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
+resilience4j:
+  circuitbreaker:
+    configs:
+      defecto:
+        slow-call-rate-threshold: '50'
+        slow-call-duration-threshold: 2s
+        permitted-number-of-calls-in-half-open-state: '4'
+        failure-rate-threshold: '50'
+        wait-duration-in-open-state: 20s
+        sliding-window-size: '6'
+    instances:
+      user:
+        base-config: defecto
+  timelimiter:
+    instances:
+      user:
+        base-config: defecto
+    configs:
+      defecto:
+        timeout-duration: 6s
+spring:
+  config:
+    import: 'optional:configserver:'
+  application:
+    name: animanga-service
+  security:
+    user:
+      password: admin
+      name: admin
+  datasource:
+    password: ''
+    username: root
+    url: jdbc:mysql://localhost:3306/gamequizzbd
+  jpa:
+    show-sql: 'true'
+server:
+  port: ${PORT:0}
